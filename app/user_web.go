@@ -53,6 +53,17 @@ func UpdateUserEndpoint(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 }
 
+func GetUserByFirebaseIDEndpoint(w http.ResponseWriter, req *http.Request) *m.User {
+	v := req.URL.Query()
+	fbID, ok := v["firebaseID"]
+	var u m.User
+	if ok {
+		Db.First(&u, "FirebaseID = ?", fbID)
+		return &u
+	}
+	return nil
+}
+
 func GetUserEndpoint(w http.ResponseWriter, req *http.Request) {
 	id, _ := strconv.ParseUint(mux.Vars(req)["id"], 10, 64)
 

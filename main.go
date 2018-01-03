@@ -32,7 +32,7 @@ func main() {
 	router.HandleFunc("/user/{id:.+}", app.GetUserEndpoint).Methods("GET")
 	router.HandleFunc("/user/{id:.+}", app.UpdateUserEndpoint).Methods("PUT")
 
-	fmt.Println("Hello Property API")
+	fmt.Println("Hello User API")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
